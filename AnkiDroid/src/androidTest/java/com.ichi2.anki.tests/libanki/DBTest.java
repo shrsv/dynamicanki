@@ -1,13 +1,13 @@
-package com.ichi2.anki.tests.libanki;
+package com.ichi3.anki.tests.libanki;
 
 import android.Manifest;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
 import android.os.Build;
 
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.compat.CompatHelper;
-import com.ichi2.libanki.DB;
+import com.ichi3.anki.CollectionHelper;
+import com.ichi3.compat.CompatHelper;
+import com.ichi3.libanki.DB;
 
 import org.junit.Assert;
 import org.junit.Rule;

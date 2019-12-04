@@ -2,7 +2,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <com.ichi2.anki.stats.ChartView
+    <com.ichi3.anki.stats.ChartView
         android:layout_width="fill_parent"
         android:id="@+id/image_view_chart"
         android:layout_height="fill_parent"

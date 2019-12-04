@@ -3,7 +3,7 @@
 # Written by Tim Rae 18-11-2015
 
 # Input arguments are packageId and app name
-NEW_ID=$1		# e.g. com.ichi2.anki.a
+NEW_ID=$1		# e.g. ichi3.anki.a
 NEW_NAME=$2		# e.g. AnkiDroid.A
 
 ROOT="AnkiDroid/src/main/"

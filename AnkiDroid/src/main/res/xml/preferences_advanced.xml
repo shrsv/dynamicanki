@@ -22,7 +22,7 @@
 
 <!-- Advanced Preferences -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://arbitrary.app.namespace/com.ichi2.anki"
+    xmlns:app="http://arbitrary.app.namespace/com.ichi3.anki"
     android:title="@string/pref_cat_advanced"
     android:summary="@string/pref_cat_advanced_summ"
     android:key="pref_screen_advanced">
@@ -31,7 +31,7 @@
             android:key="deckPath"
             android:summary="@string/preference_summary_literal"
             android:title="@string/col_path" />
-        <com.ichi2.ui.ConfirmationPreference
+        <com.ichi3.ui.ConfirmationPreference
             android:key="force_full_sync"
             android:title="@string/force_full_sync_title"
             android:summary="@string/force_full_sync_summary" />
@@ -39,7 +39,7 @@
             android:key="custom_sync_server_link"
             android:title="@string/custom_sync_server_title"/>
         <PreferenceCategory android:title="@string/pref_cat_performance" >
-            <com.ichi2.ui.SeekBarPreference
+            <com.ichi3.ui.SeekBarPreference
                 android:defaultValue="8"
                 android:key="backupMax"
                 android:max="10"
@@ -96,7 +96,7 @@
                 android:entryValues="@array/dictionary_values"
                 android:key="dictionary"
                 android:title="@string/dictionary" />
-            <com.ichi2.preferences.CustomDialogPreference
+            <com.ichi3.preferences.CustomDialogPreference
                 android:dialogIcon="@drawable/ic_dialog_alert"
                 android:dialogMessage="@string/reset_languages_question"
                 android:dialogTitle="@string/reset_languages"
@@ -140,7 +140,7 @@
         android:key="about_dialog_preference"
         android:title="@string/about_title">
         <intent
-            android:targetPackage="com.ichi2.anki"
-            android:targetClass="com.ichi2.anki.Info"/>
+            android:targetPackage="com.ichi3.anki"
+            android:targetClass="com.ichi3.anki.Info"/>
     </Preference>
 </PreferenceScreen>

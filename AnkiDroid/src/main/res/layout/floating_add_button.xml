@@ -13,7 +13,7 @@
         fab:fab_addButtonColorPressed="?attr/fab_pressed"
         fab:fab_icon="@drawable/ic_add_white_24dp"
         fab:fab_labelStyle="@style/menu_labels_style"
-        fab:layout_behavior="com.ichi2.anki.widgets.FabBehavior">
+        fab:layout_behavior="com.ichi3.anki.widgets.FabBehavior">
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_deck_action"
             android:layout_width="wrap_content"

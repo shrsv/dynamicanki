@@ -1,10 +1,10 @@
-package com.ichi2.anki.tests.libanki;
+package com.ichi3.anki.tests.libanki;
 
 import android.Manifest;
 import android.os.Build;
 
-import com.ichi2.async.Connection;
-import com.ichi2.compat.CompatHelper;
+import com.ichi3.async.Connection;
+import com.ichi3.compat.CompatHelper;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -42,7 +42,7 @@ public class HttpTest {
         // The first one is just to run the static initializer, really
         Runnable onlineRunnable = () -> {
             try {
-                Class.forName("com.ichi2.async.Connection");
+                Class.forName("com.ichi3.async.Connection");
             } catch (Exception e) {
                 Assert.fail("Unable to load Connection class: " + e.getMessage());
             }

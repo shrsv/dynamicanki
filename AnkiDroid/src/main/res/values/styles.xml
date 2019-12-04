@@ -5,10 +5,13 @@
         These compat themes are just copies of the parent themes here, but some attributes are
         overridden as necessary in the API specific versions, for example in values-v21/styles.xml.
         -->
-    <style name="Theme_Light_Compat" parent="Theme_Light"/>
-    <style name="Theme_Dark_Compat" parent="Theme_Dark"/>
-    <style name="Theme_Plain_Compat" parent="Theme_Light.Plain"/>
-    <style name="Theme_Black_Compat" parent="Theme_Dark.Black"/>
+    <style name="Theme_Light_Compat" parent="Theme_Light" />
+
+    <style name="Theme_Dark_Compat" parent="Theme_Dark" />
+
+    <style name="Theme_Plain_Compat" parent="Theme_Light.Plain" />
+
+    <style name="Theme_Black_Compat" parent="Theme_Dark.Black" />
 
 
     <style name="Theme_Dark_Compat.Launcher">
@@ -43,7 +46,9 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:singleLine">true</item>
     </style>
-    <style name="FooterButtonLayout" parent="FooterButtonLayoutBase"/>
+
+    <style name="FooterButtonLayout" parent="FooterButtonLayoutBase" />
+
     <style name="FooterButtonNextTime">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -53,6 +58,7 @@
         <item name="android:singleLine">true</item>
         <item name="android:textSize">12.5sp</item>
     </style>
+
     <style name="FooterButtonEaseText" parent="FooterButtonNextTime">
         <item name="android:textSize">14sp</item>
         <item name="android:textAllCaps">true</item>
@@ -64,12 +70,15 @@
     <style name="AgainButtonEaseStyle" parent="FooterButtonEaseText">
         <item name="android:textColor">?attr/againButtonTextColor</item>
     </style>
+
     <style name="HardButtonEaseStyle" parent="FooterButtonEaseText">
         <item name="android:textColor">?attr/hardButtonTextColor</item>
     </style>
+
     <style name="GoodButtonEaseStyle" parent="FooterButtonEaseText">
         <item name="android:textColor">?attr/goodButtonTextColor</item>
     </style>
+
     <style name="EasyButtonEaseStyle" parent="FooterButtonEaseText">
         <item name="android:textColor">?attr/easyButtonTextColor</item>
     </style>
@@ -77,12 +86,15 @@
     <style name="AgainButtonTimeStyle" parent="FooterButtonNextTime">
         <item name="android:textColor">?attr/againButtonTextColor</item>
     </style>
+
     <style name="HardButtonTimeStyle" parent="FooterButtonNextTime">
         <item name="android:textColor">?attr/hardButtonTextColor</item>
     </style>
+
     <style name="GoodButtonTimeStyle" parent="FooterButtonNextTime">
         <item name="android:textColor">?attr/goodButtonTextColor</item>
     </style>
+
     <style name="EasyButtonTimeStyle" parent="FooterButtonNextTime">
         <item name="android:textColor">?attr/easyButtonTextColor</item>
     </style>
@@ -115,4 +127,15 @@
         <item name="colorButtonNormal">?attr/largeButtonBackgroundColor</item>
         <item name="android:textColor">?attr/largeButtonTextColor</item>
     </style>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light" />
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

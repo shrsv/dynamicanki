@@ -1,8 +1,8 @@
 import com.android.ddmlib.DdmPreferences
 
 plugins {
- // Gradle plugin portal 
- id 'com.github.triplet.play' version '2.5.0'
+    // Gradle plugin portal 
+    id 'com.github.triplet.play' version '2.5.0'
 }
 
 apply plugin: 'com.android.application'
@@ -16,14 +16,16 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId "com.ichi2.anki"
-        minSdkVersion 15
+        applicationId 'com.ichi3.anki'
+        minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 28
-        testApplicationId "com.ichi2.anki.tests"
+        testApplicationId "com.ichi3.anki.tests"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-
+        resConfigs "en", "GB"
+        versionCode 21000122
+        versionName '21000122'
         // This enables long timeouts required on slow ARM emulators, e.g. Travis
         adbOptions {
             //logLevel verbose // let's try to see what is happening
@@ -37,7 +39,7 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file("${homePath}/src/android-keystore")
+            storeFile file('/home/lg/signingconfig')
             keyAlias "nrkeystorealias"
             storePassword System.getenv("KSTOREPWD")
             keyPassword System.getenv("KEYPWD")
@@ -94,6 +96,11 @@ android {
             manifest.srcFile 'src/test/AndroidManifest.xml'
         }
     }
+
+
+    dynamicFeatures = [":dynamicstats"]
+
+
 }
 
 play {
@@ -116,38 +123,44 @@ tasks.withType(JavaCompile) {
 apply from: "./jacoco.gradle"
 
 dependencies {
+    api 'androidx.constraintlayout:constraintlayout:1.1.3'
     compileOnly "com.google.auto.service:auto-service-annotations:1.0-rc6"
     annotationProcessor "com.google.auto.service:auto-service:1.0-rc6"
+    // implementation project(path: ':Statistics')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //noinspection GradleDependency
-    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+    api 'androidx.appcompat:appcompat:1.1.0-rc01'
     // Note: the design support library can be quite buggy, so test everything thoroughly before updating it
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.browser:browser:1.0.0'
-    implementation 'androidx.exifinterface:exifinterface:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'io.requery:sqlite-android:3.30.1'
-    implementation 'android.arch.persistence:db-framework:1.1.1'
-    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
-    implementation 'com.getbase:floatingactionbutton:1.10.1'
-    implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'org.bitbucket.cowwoc:diff-match-patch:1.2'
+    api 'com.google.android.material:material:1.0.0'
+    api 'androidx.browser:browser:1.0.0'
+    api 'androidx.exifinterface:exifinterface:1.0.0'
+    api 'androidx.recyclerview:recyclerview:1.0.0'
+    api 'io.requery:sqlite-android:3.30.1'
+    api 'android.arch.persistence:db-framework:1.1.1'
+    api 'com.afollestad.material-dialogs:core:0.9.6.0'
+    api 'com.getbase:floatingactionbutton:1.10.1'
+    api 'androidx.annotation:annotation:1.1.0'
+    api 'org.bitbucket.cowwoc:diff-match-patch:1.2'
 
     // May need a resolution strategy for support libs to our versions
-    implementation'ch.acra:acra-http:5.2.1'
-    implementation'ch.acra:acra-dialog:5.2.1'
-    implementation'ch.acra:acra-toast:5.2.1'
-    implementation'ch.acra:acra-limiter:5.2.1'
+    api 'ch.acra:acra-http:5.2.1'
+    api 'ch.acra:acra-dialog:5.2.1'
+    api 'ch.acra:acra-toast:5.2.1'
+    api 'ch.acra:acra-limiter:5.2.1'
 
-    implementation 'net.mikehardy:google-analytics-java7:2.0.10'
+    api 'net.mikehardy:google-analytics-java7:2.0.10'
     //noinspection GradleDependency
-    implementation 'com.squareup.okhttp3:okhttp:3.12.6'
-    implementation 'com.arcao:slf4j-timber:3.1'
+    api 'com.squareup.okhttp3:okhttp:3.12.6'
+    api 'com.arcao:slf4j-timber:3.1'
 
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'org.jsoup:jsoup:1.12.1'
+    api 'com.jakewharton.timber:timber:4.7.1'
+    api 'com.google.code.gson:gson:2.8.6'
+    api 'org.jsoup:jsoup:1.12.1'
+
+    implementation "com.google.android.play:core:${versions.playcore}"
+
+
     api project(":api")
 
     testImplementation 'org.junit.vintage:junit-vintage-engine:5.5.2'
@@ -167,4 +180,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test:rules:1.2.0'
+
 }

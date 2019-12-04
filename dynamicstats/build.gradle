@@ -1,0 +1,41 @@
+apply plugin: 'com.android.dynamic-feature'
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('/home/lg/Desktop/samplekey.jks')
+            storePassword 'KSTOREPWD'
+            keyAlias = 'nrkeystorealias'
+            keyPassword 'KEYPWD'
+        }
+    }
+    compileSdkVersion 29
+
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 21000122
+        versionName '21000122'
+
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':AnkiDroid')
+
+    implementation "com.google.android.play:core:${versions.playcore}"
+}
+
+
+repositories {
+    google()
+    jcenter()
+}

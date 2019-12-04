@@ -14,7 +14,7 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.                           *
  ****************************************************************************************/
 
-package com.ichi2.anki.tests;
+package com.ichi3.anki.tests;
 
 import android.Manifest;
 import android.app.NotificationChannel;
@@ -23,9 +23,9 @@ import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.GrantPermissionRule;
 
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.NotificationChannels;
-import com.ichi2.compat.CompatHelper;
+import com.ichi3.anki.AnkiDroidApp;
+import com.ichi3.anki.NotificationChannels;
+import com.ichi3.compat.CompatHelper;
 
 import org.junit.Before;
 import org.junit.Rule;

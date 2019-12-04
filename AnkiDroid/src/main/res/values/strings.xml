@@ -7,4 +7,7 @@
     <integer name="ga_sampleFrequency">10</integer>
     <integer name="ga_sessionTimeout">1800</integer>
     <bool name="ga_anonymizeIp">true</bool>
+    <string name="title_statistics">Statistics</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_dynamicstats">DynamicStats</string>
 </resources>

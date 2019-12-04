@@ -31,8 +31,8 @@
             android:summary="@string/sync_account_summ_logged_out"
             android:title="@string/sync_account" >
             <intent
-                android:targetClass="com.ichi2.anki.MyAccount"
-                android:targetPackage="com.ichi2.anki" />
+                android:targetClass="com.ichi3.anki.MyAccount"
+                android:targetPackage="com.ichi3.anki" />
         </Preference>
         <CheckBoxPreference
             android:defaultValue="true"

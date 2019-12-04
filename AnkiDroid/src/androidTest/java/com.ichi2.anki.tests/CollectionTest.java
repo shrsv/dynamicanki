@@ -1,10 +1,10 @@
-package com.ichi2.anki.tests;
+package com.ichi3.anki.tests;
 
 import android.Manifest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.GrantPermissionRule;
 
-import com.ichi2.anki.CollectionHelper;
+import com.ichi3.anki.CollectionHelper;
 
 import org.junit.Rule;
 import org.junit.Test;

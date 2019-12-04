@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.cachedthought.dynamicstats">
+
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_dynamicstats">
+        <dist:delivery>
+            <dist:on-demand />
+        </dist:delivery>
+
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
+    <application>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name="com.cachedthought.dynamicstats.Statistics"
+            android:exported="false"
+            android:configChanges="keyboardHidden|orientation|locale|screenSize"
+            android:parentActivityName="com.ichi3.anki.DeckPicker"
+            tools:ignore="AppLinkUrlError">
+            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ichi3.anki.DeckPicker" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="application/apkg"/>
+                <data android:mimeType="application/colpkg"/>
+                <data android:mimeType="application/vnd.anki"/>
+                <data android:mimeType="application/x-apkg"/>
+                <data android:mimeType="application/x-colpkg"/>
+                <data android:mimeType="application/octet-stream" android:scheme="content"/>
+                <data android:mimeType="application/zip" android:scheme="content"/>
+            </intent-filter>
+        </activity>
+
+
+    </application>
+
+</manifest>

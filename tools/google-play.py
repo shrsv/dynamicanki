@@ -29,7 +29,7 @@ from oauth2client import client
 
 SERVICE_ACCOUNT_EMAIL = (
     '294046724212-r3bef6kl46pb9gk0h1pl5rcjmpfrdpjl@developer.gserviceaccount.com')
-PACKAGE = 'com.ichi2.anki'
+PACKAGE = 'ichi3.anki'
 IMAGES_DIR = './docs/marketing/screenshots/'
 LISTINGS_DIR = './docs/marketing/localized_description/'
 LANGS = ['uk', 'pt-PT', 'zh-CN', 'th', 'sl', 'ar', 'de-DE', 'ru-RU', 'hu-HU', 'zh-TW', 'fi-FI', 'el-GR', 'ja-JP', 'pt-BR', 'nl-NL', 'no-NO', 'es-ES', 'it-IT', 'id', 'pl-PL', 'cs-CZ', 'ca', 'sr', 'fr-FR', 'ro', 'en-US', 'ko-KR', 'bg', 'tr-TR', 'fa', 'sv-SE']

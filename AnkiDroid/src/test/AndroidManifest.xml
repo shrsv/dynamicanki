@@ -10,7 +10,7 @@
              https://issuetracker.google.com/issues/37001185
              -->
         <activity
-            android:name="com.ichi2.anki.NullCollectionReviewer">
+            android:name="com.ichi3.anki.NullCollectionReviewer">
         </activity>
     </application>
 </manifest>

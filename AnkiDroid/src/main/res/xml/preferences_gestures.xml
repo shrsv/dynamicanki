@@ -22,7 +22,7 @@
 
 <!-- Navigation Prefrences -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://arbitrary.app.namespace/com.ichi2.anki"
+    xmlns:app="http://arbitrary.app.namespace/com.ichi3.anki"
     android:title="@string/pref_cat_gestures"
     android:summary="@string/pref_cat_gestures_summ" >
     <CheckBoxPreference
@@ -31,7 +31,7 @@
         android:key="gestures"
         android:summary="@string/gestures_summ"
         android:title="@string/gestures" />
-    <com.ichi2.ui.SeekBarPreference
+    <com.ichi3.ui.SeekBarPreference
         android:defaultValue="100"
         android:dependency="gestures"
         android:dialogMessage="@string/preference_summary_literal"

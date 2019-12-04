@@ -17,7 +17,7 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.                           *
  ****************************************************************************************/
 
-package com.ichi2.anki.tests;
+package com.ichi3.anki.tests;
 
 import android.Manifest;
 import android.content.ContentResolver;
@@ -25,22 +25,23 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
-import androidx.test.platform.app.InstrumentationRegistry;
-import androidx.test.rule.GrantPermissionRule;
 import android.util.Log;
 
-import com.ichi2.anki.AbstractFlashcardViewer;
-import com.ichi2.anki.AnkiDroidApp;
-import com.ichi2.anki.CollectionHelper;
-import com.ichi2.anki.FlashCardsContract;
-import com.ichi2.anki.exception.ConfirmModSchemaException;
-import com.ichi2.libanki.Card;
-import com.ichi2.libanki.Collection;
-import com.ichi2.libanki.Decks;
-import com.ichi2.libanki.Models;
-import com.ichi2.libanki.Note;
-import com.ichi2.libanki.Sched;
-import com.ichi2.libanki.Utils;
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.rule.GrantPermissionRule;
+
+import com.ichi3.anki.AbstractFlashcardViewer;
+import com.ichi3.anki.AnkiDroidApp;
+import com.ichi3.anki.CollectionHelper;
+import com.ichi3.anki.FlashCardsContract;
+import com.ichi3.anki.exception.ConfirmModSchemaException;
+import com.ichi3.libanki.Card;
+import com.ichi3.libanki.Collection;
+import com.ichi3.libanki.Decks;
+import com.ichi3.libanki.Models;
+import com.ichi3.libanki.Note;
+import com.ichi3.libanki.Sched;
+import com.ichi3.libanki.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -61,7 +62,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
- * Test cases for {@link com.ichi2.anki.provider.CardContentProvider}.
+ * Test cases for {@link com.ichi3.anki.provider.CardContentProvider}.
  * <p/>
  * These tests should cover all supported operations for each URI.
  */
@@ -71,11 +72,11 @@ public class ContentProviderTest {
     @Rule
     public GrantPermissionRule mRuntimePermissionRule =
             GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    com.ichi2.anki.Manifest.permission.READ_WRITE_DATABASE);
+                    com.ichi3.anki.Manifest.permission.READ_WRITE_DATABASE);
 
 
 
-    private static final String BASIC_MODEL_NAME = "com.ichi2.anki.provider.test.basic.x94oa3F";
+    private static final String BASIC_MODEL_NAME = "com.ichi3.anki.provider.test.basic.x94oa3F";
     private static final String TEST_FIELD_NAME = "TestFieldName";
     private static final String TEST_FIELD_VALUE = "test field value";
     private static final String TEST_TAG = "aldskfhewjklhfczmxkjshf";
@@ -83,7 +84,7 @@ public class ContentProviderTest {
                                                 ,"sstuljxgmfdyugiujyhq"
                                                 ,"pdsqoelhmemmmbwjunnu"
                                                 ,"scxipjiyozczaaczoawo"};
-    private static final String TEST_MODEL_NAME = "com.ichi2.anki.provider.test.a1x6h9l";
+    private static final String TEST_MODEL_NAME = "com.ichi3.anki.provider.test.a1x6h9l";
     private static final String[] TEST_MODEL_FIELDS = {"FRONTS","BACK"};
     private static final String[] TEST_MODEL_CARDS = {"cArD1", "caRD2"};
     private static final String[] TEST_MODEL_QFMT = {"{{FRONTS}}", "{{BACK}}"};

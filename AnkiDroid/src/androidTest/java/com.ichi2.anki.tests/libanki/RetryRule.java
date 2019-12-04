@@ -1,4 +1,4 @@
-package com.ichi2.anki.tests.libanki;
+package com.ichi3.anki.tests.libanki;
 
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;

@@ -22,7 +22,7 @@
 
 <!-- Fonts & Style Prefrences -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://arbitrary.app.namespace/com.ichi2.anki"
+    xmlns:app="http://arbitrary.app.namespace/com.ichi3.anki"
             android:title="@string/pref_cat_appearance"
         android:key="appearance_preference_group"
         android:summary="@string/pref_cat_appearance_summ">
@@ -56,7 +56,7 @@
                 android:defaultValue="@string/empty_string"
                 android:key="browserEditorFont"
                 android:title="@string/pref_browser_editor_font" />
-            <com.ichi2.ui.SeekBarPreference
+            <com.ichi3.ui.SeekBarPreference
                 android:defaultValue="100"
                 android:key="relativeCardBrowserFontSize"
                 android:max="200"

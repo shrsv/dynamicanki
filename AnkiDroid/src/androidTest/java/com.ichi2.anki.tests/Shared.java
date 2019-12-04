@@ -14,7 +14,7 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.                           *
  ****************************************************************************************/
 
-package com.ichi2.anki.tests;
+package com.ichi3.anki.tests;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,9 +23,9 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.azimolabs.conditionwatcher.Instruction;
-import com.ichi2.libanki.Collection;
-import com.ichi2.libanki.Storage;
-import com.ichi2.libanki.Utils;
+import com.ichi3.libanki.Collection;
+import com.ichi3.libanki.Storage;
+import com.ichi3.libanki.Utils;
 
 import java.io.File;
 import java.io.IOException;

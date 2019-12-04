@@ -16,14 +16,14 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://arbitrary.app.namespace/com.ichi2.anki" >
+    xmlns:app="http://arbitrary.app.namespace/com.ichi3.anki" >
 
     <PreferenceCategory android:title="@string/deck_conf_cram_filter" >
         <EditTextPreference
             android:key="search"
             android:title="@string/deck_conf_cram_search" />
 
-        <com.ichi2.preferences.NumberRangePreference
+        <com.ichi3.preferences.NumberRangePreference
             android:key="limit"
             android:numeric="integer"
             android:title="@string/deck_conf_cram_limit"
@@ -46,7 +46,7 @@
             android:key="stepsOn"
             android:title="@string/deck_conf_cram_steps_summ" />
 
-        <com.ichi2.preferences.StepsPreference
+        <com.ichi3.preferences.StepsPreference
             android:dependency="stepsOn"
             android:key="steps"
             android:title="@string/deck_conf_cram_steps"
