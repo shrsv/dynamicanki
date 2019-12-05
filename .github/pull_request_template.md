@@ -11,7 +11,7 @@ _How does this change address the problem?_
 
 ## How Has This Been Tested?
 
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration (SDK version(s), emulator or physical, etc)
+Please describe the com.ichi3.anki.tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration (SDK version(s), emulator or physical, etc)
 
 ## Learning (optional, can help others)
 _Describe the research stage_

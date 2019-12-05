@@ -5,6 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabaseCorruptException;
 import android.os.Build;
 
+import androidx.sqlite.db.SupportSQLiteDatabase;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.rule.GrantPermissionRule;
+
 import com.ichi3.anki.CollectionHelper;
 import com.ichi3.compat.CompatHelper;
 import com.ichi3.libanki.DB;
@@ -18,12 +22,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Random;
 
-import androidx.sqlite.db.SupportSQLiteDatabase;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.rule.GrantPermissionRule;
-
 @RunWith(AndroidJUnit4.class)
-public class DBTest {
+public class    DBTest {
 
     @Rule
     public GrantPermissionRule mRuntimePermissionRule =

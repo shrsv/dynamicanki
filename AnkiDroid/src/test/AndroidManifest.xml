@@ -4,7 +4,7 @@
 
         <!-- To use AndroidX Test APIs on Activity sub-classes, you must have valid
              Activity entries in your AndroidManifest. Manifest merger only happens with
-             build variants, and tests always run with the debug build variant, so test-only
+             build variants, and com.ichi3.anki.tests always run with the debug build variant, so test-only
              Activity subclasses are defined here, and this file is included in debug.sourceSet
              https://developer.android.com/studio/build/manifest-merge
              https://issuetracker.google.com/issues/37001185

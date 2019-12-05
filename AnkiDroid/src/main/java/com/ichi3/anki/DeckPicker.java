@@ -24,9 +24,11 @@ package com.ichi3.anki;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
@@ -35,16 +37,15 @@ import android.content.res.TypedArray;
 import android.database.SQLException;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -118,6 +119,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TreeMap;
 
 import timber.log.Timber;
@@ -355,6 +357,25 @@ public class DeckPicker extends NavigationDrawerActivity implements
         }
     };
 
+    SelfAdaptationManager mSelfAdaptationManager;
+    boolean mSelfAdaptationManagerBound = false;
+
+    private ServiceConnection mServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mSelfAdaptationManagerBound = false;
+        }
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            SelfAdaptationManager.MyBinder myBinder = (SelfAdaptationManager.MyBinder) service;
+            if (myBinder != null) {
+                mSelfAdaptationManager = myBinder.getService();
+                mSelfAdaptationManagerBound = true;
+            }
+        }
+    };
+
+
 
     // ----------------------------------------------------------------------------
     // ANDROID ACTIVITY METHODS
@@ -449,40 +470,23 @@ public class DeckPicker extends NavigationDrawerActivity implements
             }
         }
 
-
-        Context context = getApplicationContext();
-        String DEBUG_TAG = "NetworkStatusExample";
-
-        ConnectivityManager connMgr =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        boolean isWifiConn = false;
-        boolean isMobileConn = false;
-        for (Network network : connMgr.getAllNetworks()) {
-            NetworkInfo networkInfo = connMgr.getNetworkInfo(network);
-            if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-                isWifiConn |= networkInfo.isConnected();
-            }
-            if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
-                isMobileConn |= networkInfo.isConnected();
-            }
-        }
-        // Log.d(DEBUG_TAG, "Wifi connected: " + isWifiConn);
-        // Log.d(DEBUG_TAG, "Mobile connected: " + isMobileConn);
-        int duration = Toast.LENGTH_SHORT;
-        if (isWifiConn){
-            CharSequence text = "Wifi connected!";
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-        }
-
-
+        // mSelfAdaptationManager.ifNightEnableNightMode();
 
     }
 
-    /**
-     * Try to open the Collection for the first time, and do some error handling if it wasn't successful
-     * @return whether or not we were successful
-     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent intent = new Intent(this, SelfAdaptationManager.class);
+        startService(intent);
+        bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+
+        /**
+         * Try to open the Collection for the first time, and do some error handling if it wasn't successful
+         * @return whether or not we were successful
+         */
     private boolean firstCollectionOpen() {
         if (CollectionHelper.hasStorageAccessPermission(this)) {
             // Show error dialog if collection could not be opened
@@ -773,6 +777,8 @@ public class DeckPicker extends NavigationDrawerActivity implements
             updateDeckList();
             setTitle(getResources().getString(R.string.app_name));
         }
+
+
     }
 
 
@@ -805,6 +811,10 @@ public class DeckPicker extends NavigationDrawerActivity implements
         if (colIsOpen()) {
             WidgetStatus.update(this);
             UIUtils.saveCollectionInBackground(this);
+        }
+        if (mSelfAdaptationManagerBound) {
+            unbindService(mServiceConnection);
+            mSelfAdaptationManagerBound = false;
         }
     }
 
@@ -1385,15 +1395,45 @@ public class DeckPicker extends NavigationDrawerActivity implements
     // THIS IS WHERE THE SELFADAPTATIONMANAGER HAS TO DO ITS WORK
     @Override
     public void sync(String syncConflictResolution) {
+        boolean managerSyncPermission = false;
+        Context context = getApplicationContext();
+
+        if(mSelfAdaptationManagerBound) {
+            managerSyncPermission = mSelfAdaptationManager.getSyncPermission();
+            Log.d("SYNCMSG", "About to call service" + managerSyncPermission);
+            Toast.makeText(context, "Obtained Sync Permission from manager: " + Boolean.toString(managerSyncPermission), Toast.LENGTH_LONG).show();
+        }
+
+
+        // Ankiweb sync server works on the version number specified by Anki's author
+        // This modified version uses a different version number to deal with a restriction from Google Play
+        // Hence, temporarily I am reverting version number to do the sync
         SharedPreferences preferences = AnkiDroidApp.getSharedPrefs(getBaseContext());
+        SharedPreferences.Editor myEdit = preferences.edit();
+        myEdit.putString("lastVersion", "21000117");
+        myEdit.putString("lastUpgradeVersion", "21000117");
+        myEdit.putString("acra.lastVersionNr", "21000117");
+        myEdit.commit();
+
+        // Print out updated preferences for debugging purposes
+        Map<String, ?> allEntries = preferences.getAll();
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            Log.d("SYNCMSG", entry.getKey() + ": " + entry.getValue().toString());
+        }
+
         String hkey = preferences.getString("hkey", "");
+
         if (hkey.length() == 0) {
             mPullToSyncWrapper.setRefreshing(false);
             showSyncErrorDialog(SyncErrorDialog.DIALOG_USER_NOT_LOGGED_IN_SYNC);
         } else {
-            Connection.sync(mSyncListener,
-                    new Connection.Payload(new Object[] { hkey, preferences.getBoolean("syncFetchesMedia", true),
-                            syncConflictResolution }));
+            if(managerSyncPermission) {
+                Connection.sync(mSyncListener,
+                        new Connection.Payload(new Object[]{hkey, preferences.getBoolean("syncFetchesMedia", true),
+                                syncConflictResolution}));
+            } else {
+                Toast.makeText(context, "Skipping the sync request because the manager didn't permit", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -1424,6 +1464,17 @@ public class DeckPicker extends NavigationDrawerActivity implements
             // Note: getLs() in Libanki doesn't take into account the case when no changes were found, or sync cancelled
             SharedPreferences preferences = AnkiDroidApp.getSharedPrefs(getBaseContext());
             final long syncStartTime = System.currentTimeMillis();
+            // SharedPreferences preferences = AnkiDroidApp.getSharedPrefs(getBaseContext());
+            SharedPreferences.Editor myEdit = preferences.edit();
+            myEdit.putString("lastVersion", "21000117");
+            myEdit.putString("lastUpgradeVersion", "21000117");
+            myEdit.putString("acra.lastVersionNr", "21000117");
+            myEdit.commit();
+
+            Map<String, ?> allEntries = preferences.getAll();
+            for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                Log.d("SYNCMSG2", entry.getKey() + ": " + entry.getValue().toString());
+            }
             preferences.edit().putLong("lastSyncTime", syncStartTime).apply();
 
             if (mProgressDialog == null || !mProgressDialog.isShowing()) {
@@ -1593,7 +1644,7 @@ public class DeckPicker extends NavigationDrawerActivity implements
                                 joinSyncMessages(dialogMessage, syncMessage));
                     } else if ("serverAbort".equals(resultType)) {
                         // syncMsg has already been set above, no need to fetch it here.
-                        showSyncErrorMessage(joinSyncMessages(dialogMessage, syncMessage));
+                        // showSyncErrorMessage(joinSyncMessages(dialogMessage, syncMessage));
                     } else if ("mediaSyncServerError".equals(resultType)) {
                         dialogMessage = res.getString(R.string.sync_media_error_check);
                         showSyncErrorDialog(SyncErrorDialog.DIALOG_MEDIA_SYNC_ERROR,

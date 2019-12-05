@@ -77,7 +77,7 @@
         android:usesCleartextTraffic="true"
         android:windowSoftInputMode="adjustResize">
         <service
-            android:name=".SelfAdaptionManager"
+            android:name=".SelfAdaptationManager"
             android:enabled="true"
             android:exported="true"></service>
 
