@@ -117,7 +117,7 @@ public class SelfAdaptationManager extends Service {
     public boolean getSyncPermission() {
         Context context = getApplicationContext();
 
-        if (isBatteryOKforSync() && isBatteryOKforSync()) {
+        if (isBatteryOKforSync() && isNetworkOKforSync()) {
             return true;
         } else {
             return false;

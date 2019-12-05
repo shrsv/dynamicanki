@@ -14,8 +14,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 21000123   // 4th digit: 1=alpha, 2=beta, 3=official
-        versionName '21000123'
+        versionCode 21000124   // 4th digit: 1=alpha, 2=beta, 3=official
+        versionName '21000124'
     }
     buildTypes {
         release {

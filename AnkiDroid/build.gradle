@@ -24,8 +24,8 @@ android {
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         resConfigs "en", "GB"
-        versionCode 21000123
-        versionName '21000123'
+        versionCode 21000124
+        versionName '21000124'
         // This enables long timeouts required on slow ARM emulators, e.g. Travis
         adbOptions {
             //logLevel verbose // let's try to see what is happening
